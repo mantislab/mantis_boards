@@ -1,0 +1,120 @@
+##################################################################################################
+## Original file from MCUdude for use with MantisCore                                           ##
+## https://github.com/MCUdude/MantisCore                                                        ##
+##                                                                                              ##
+##################################################################################################
+
+
+# Menu options
+menu.clock=Clock
+menu.BOD=BOD
+menu.pinout=Pinout
+menu.variant=Variant
+menu.LTO=Compiler LTO
+
+
+##################################################################
+# ATmega1284/P 
+
+mantis1284.name=Mantis 1284/P 
+mantis1284.upload.tool=avrdude
+mantis1284.upload.protocol=arduino
+mantis1284.upload.maximum_size=130048
+mantis1284.upload.maximum_data_size=16384
+
+mantis1284.bootloader.tool=avrdude
+mantis1284.bootloader.unlock_bits=0x3f
+mantis1284.bootloader.lock_bits=0x0f
+
+mantis1284.build.core=MCUdude_corefiles
+mantis1284.build.board=AVR_ATmega1284
+
+# Pinouts
+mantis1284.menu.pinout.standard=Standard
+mantis1284.menu.pinout.standard.build.variant=standard
+
+# Variants
+mantis1284.menu.variant.modelP=1284P
+mantis1284.menu.variant.modelP.build.mcu=atmega1284p
+mantis1284.menu.variant.modelNonP=1284
+mantis1284.menu.variant.modelNonP.build.mcu=atmega1284
+
+# Brown out detection
+mantis1284.menu.BOD.2v7=2.7v
+mantis1284.menu.BOD.2v7.bootloader.extended_fuses=0xfd
+mantis1284.menu.BOD.4v3=4.3v
+mantis1284.menu.BOD.4v3.bootloader.extended_fuses=0xfc
+mantis1284.menu.BOD.1v8=1.8v
+mantis1284.menu.BOD.1v8.bootloader.extended_fuses=0xfe
+mantis1284.menu.BOD.disabled=Disabled
+mantis1284.menu.BOD.disabled.bootloader.extended_fuses=0xff
+
+# Compiler link time optimization
+mantis1284.menu.LTO.Os=Disabled (default)
+mantis1284.menu.LTO.Os.compiler.c.extra_flags=
+mantis1284.menu.LTO.Os.compiler.c.elf.extra_flags=
+mantis1284.menu.LTO.Os.compiler.cpp.extra_flags=
+mantis1284.menu.LTO.Os.ltoarcmd=avr-ar
+
+mantis1284.menu.LTO.Os_flto=Enabled
+mantis1284.menu.LTO.Os_flto.compiler.c.extra_flags=-Wextra -flto
+mantis1284.menu.LTO.Os_flto.compiler.c.elf.extra_flags=-w -flto
+mantis1284.menu.LTO.Os_flto.compiler.cpp.extra_flags=-Wextra -flto
+mantis1284.menu.LTO.Os_flto.ltoarcmd=avr-gcc-ar
+
+# Clock frequencies
+mantis1284.menu.clock.16MHz_external=16 MHz external
+mantis1284.menu.clock.16MHz_external.upload.port=UART0
+mantis1284.menu.clock.16MHz_external.upload.speed=115200
+mantis1284.menu.clock.16MHz_external.bootloader.low_fuses=0xf7
+mantis1284.menu.clock.16MHz_external.bootloader.high_fuses=0xd6
+mantis1284.menu.clock.16MHz_external.bootloader.file=optiboot_flash/{build.mcu}/{build.f_cpu}/optiboot_flash_{build.mcu}_{upload.port}_{upload.speed}_{build.f_cpu}.hex
+mantis1284.menu.clock.16MHz_external.build.f_cpu=16000000L
+
+mantis1284.menu.clock.20MHz_external=20 MHz external
+mantis1284.menu.clock.20MHz_external.upload.port=UART0
+mantis1284.menu.clock.20MHz_external.upload.speed=115200
+mantis1284.menu.clock.20MHz_external.bootloader.low_fuses=0xf7
+mantis1284.menu.clock.20MHz_external.bootloader.high_fuses=0xd6
+mantis1284.menu.clock.20MHz_external.bootloader.file=optiboot_flash/{build.mcu}/{build.f_cpu}/optiboot_flash_{build.mcu}_{upload.port}_{upload.speed}_{build.f_cpu}.hex
+mantis1284.menu.clock.20MHz_external.build.f_cpu=20000000L
+
+mantis1284.menu.clock.18_432MHz_external=18.432 MHz external
+mantis1284.menu.clock.18_432MHz_external.upload.port=UART0
+mantis1284.menu.clock.18_432MHz_external.upload.speed=115200
+mantis1284.menu.clock.18_432MHz_external.bootloader.low_fuses=0xf7
+mantis1284.menu.clock.18_432MHz_external.bootloader.high_fuses=0xd6
+mantis1284.menu.clock.18_432MHz_external.bootloader.file=optiboot_flash/{build.mcu}/{build.f_cpu}/optiboot_flash_{build.mcu}_{upload.port}_{upload.speed}_{build.f_cpu}.hex
+mantis1284.menu.clock.18_432MHz_external.build.f_cpu=18432000L
+
+mantis1284.menu.clock.12MHz_external=12 MHz external
+mantis1284.menu.clock.12MHz_external.upload.port=UART0
+mantis1284.menu.clock.12MHz_external.upload.speed=57600
+mantis1284.menu.clock.12MHz_external.bootloader.low_fuses=0xf7
+mantis1284.menu.clock.12MHz_external.bootloader.high_fuses=0xd6
+mantis1284.menu.clock.12MHz_external.bootloader.file=optiboot_flash/{build.mcu}/{build.f_cpu}/optiboot_flash_{build.mcu}_{upload.port}_{upload.speed}_{build.f_cpu}.hex
+mantis1284.menu.clock.12MHz_external.build.f_cpu=12000000L
+
+mantis1284.menu.clock.8MHz_external=8 MHz external
+mantis1284.menu.clock.8MHz_external.upload.port=UART0
+mantis1284.menu.clock.8MHz_external.upload.speed=57600
+mantis1284.menu.clock.8MHz_external.bootloader.low_fuses=0xf7
+mantis1284.menu.clock.8MHz_external.bootloader.high_fuses=0xd6
+mantis1284.menu.clock.8MHz_external.bootloader.file=optiboot_flash/{build.mcu}/{build.f_cpu}/optiboot_flash_{build.mcu}_{upload.port}_{upload.speed}_{build.f_cpu}.hex
+mantis1284.menu.clock.8MHz_external.build.f_cpu=8000000L
+
+mantis1284.menu.clock.8MHz_internal=8 MHz internal
+mantis1284.menu.clock.8MHz_internal.upload.port=UART0
+mantis1284.menu.clock.8MHz_internal.upload.speed=38400
+mantis1284.menu.clock.8MHz_internal.bootloader.low_fuses=0xe2
+mantis1284.menu.clock.8MHz_internal.bootloader.high_fuses=0xd6
+mantis1284.menu.clock.8MHz_internal.bootloader.file=optiboot_flash/{build.mcu}/{build.f_cpu}/optiboot_flash_{build.mcu}_{upload.port}_{upload.speed}_{build.f_cpu}.hex
+mantis1284.menu.clock.8MHz_internal.build.f_cpu=8000000L
+
+mantis1284.menu.clock.1MHz_internal=1 MHz internal
+mantis1284.menu.clock.1MHz_internal.upload.port=UART0
+mantis1284.menu.clock.1MHz_internal.upload.speed=9600
+mantis1284.menu.clock.1MHz_internal.bootloader.low_fuses=0x62
+mantis1284.menu.clock.1MHz_internal.bootloader.high_fuses=0xd6
+mantis1284.menu.clock.1MHz_internal.bootloader.file=optiboot_flash/{build.mcu}/{build.f_cpu}/optiboot_flash_{build.mcu}_{upload.port}_{upload.speed}_{build.f_cpu}.hex
+mantis1284.menu.clock.1MHz_internal.build.f_cpu=1000000L
