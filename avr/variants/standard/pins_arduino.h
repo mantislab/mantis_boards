@@ -49,13 +49,36 @@
    PCINT7-0: D31-24   : bit 0
 */
 
-#define NUM_DIGITAL_PINS            31
+#define NUM_DIGITAL_PINS            32
 #define NUM_ANALOG_INPUTS           8
 #define EXTERNAL_NUM_INTERRUPTS     3
-#define analogInputToDigitalPin(p)  ((p < NUM_ANALOG_INPUTS) ? (NUM_ANALOG_INPUTS + 23) : -1)
-#define analogPinToChannel(p)       ((p) >= 16 && (p) <= 21 ? (NUM_DIGITAL_PINS -(NUM_DIGITAL_PINS - p)) : -1)
+#define analogInputToDigitalPin(p)  (((p) < 6) ? ((p) + 16) : ((p) == 6) ? 27 : ((p) == 7) ? 26 : -1)
+#define digitalPinToAnalogPin(p)    (((p) >= 16) && ((p) <= 21 ? (p - 16 : ((p) == 27) ? 6 : ((p) == 26) ? 7 : -1)))
+// #define analogPinToChannel(p)       (((p) >= 16) && ((p) <= 21) ? (NUM_DIGITAL_PINS - (NUM_DIGITAL_PINS - p)) : -1)
 #define digitalPinToInterrupt(p)    ((p) == 6 ? 2 : ((p) == 2 ? 0 : ((p) == 3 ? 1 : NOT_AN_INTERRUPT)))
 
+// #ifndef MAX_SERVOS
+// #define MAX_SERVOS 0
+// #endif
+
+// ###################
+// Defined for Firmata
+// ###################
+// 
+// #if defined(__AVR_ATmega1284P__) || defined(__AVR_ATmega644PA__)
+// #define TOTAL_ANALOG_PINS       8
+// #define TOTAL_PINS              32 // 24 digital + 8 analog
+// #define VERSION_BLINK_PIN       0
+// #define IS_PIN_DIGITAL(p)       ((p) >= 2 && (p) < TOTAL_PINS)
+// #define IS_PIN_ANALOG(p)        ((p) >= 24 && (p) < TOTAL_PINS)
+// #define IS_PIN_PWM(p)           digitalPinHasPWM(p)
+// #define IS_PIN_SERVO(p)         ((p) >= 0 && (p) < MAX_SERVOS)
+// #define IS_PIN_I2C(p)           ((p) == 16 || (p) == 17)
+// #define PIN_TO_DIGITAL(p)       (p)
+// #define PIN_TO_ANALOG(p)        ((p) - 24)
+// #define PIN_TO_PWM(p)           PIN_TO_DIGITAL(p)
+// #define PIN_TO_SERVO(p)         ((p) - 2)
+// #endif
 
 #if defined(__AVR_ATmega1284P__) || defined(__AVR_ATmega644PA__)
 #define digitalPinHasPWM(p)         ((p) == 7 || (p) == 10 || (p) == 12 || (p) == 13 || (p) == 28 || (p) == 29 || (p) == 30 || (p) == 31)

@@ -26,7 +26,7 @@ mantis1284.bootloader.tool=avrdude
 mantis1284.bootloader.unlock_bits=0x3f
 mantis1284.bootloader.lock_bits=0x0f
 
-mantis1284.build.core=MCUdude_corefiles
+mantis1284.build.core=arduino
 mantis1284.build.board=AVR_ATmega1284
 
 # Pinouts
