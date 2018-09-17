@@ -53,31 +53,38 @@
 #define NUM_ANALOG_INPUTS           8
 #define EXTERNAL_NUM_INTERRUPTS     3
 #define analogInputToDigitalPin(p)  (((p) < 6) ? ((p) + 16) : ((p) == 6) ? 27 : ((p) == 7) ? 26 : -1)
-#define digitalPinToAnalogPin(p)    (((p) >= 16) && ((p) <= 21 ? (p - 16 : ((p) == 27) ? 6 : ((p) == 26) ? 7 : -1)))
+#define digitalPinToAnalogPin(p)    (((p) >= 16) && ((p) <= 21) ? ((p) - 16) : ((p) == 27) ? 6 : ((p) == 26) ? 7 : -1)
 // #define analogPinToChannel(p)       (((p) >= 16) && ((p) <= 21) ? (NUM_DIGITAL_PINS - (NUM_DIGITAL_PINS - p)) : -1)
 #define digitalPinToInterrupt(p)    ((p) == 6 ? 2 : ((p) == 2 ? 0 : ((p) == 3 ? 1 : NOT_AN_INTERRUPT)))
 
-// #ifndef MAX_SERVOS
-// #define MAX_SERVOS 0
-// #endif
+#define totalAnalogPins       8
+#define totalPins             32 // 24 digital + 8 analog
+#define versionBlinkPin       13
+#define isPinDigital(p)       ((p) >= 0 && (p) < TOTAL_PINS)
+#define isPinAnalog(p)        digitalPinToAnalogPin(p) >= 0
+#define isPimPWM(p)           digitalPinHasPWM(p)
+#define isPinServo(p)         ((p) >= 0 && (p) < MAX_SERVOS)
+#define isPinI2C(p)           ((p) == 14 || (p) == 15)
+#define pinToDigital(p)       (p)
+#define pinToAnalog(p)        digitalPinToAnalogPin(p)
+#define pinToPWM(p)           PIN_TO_DIGITAL(p)
+#define pinToServo(p)         ((p) - 2)
 
-// ###################
-// Defined for Firmata
-// ###################
-// 
+// Firmata Boards.h
+// ----------------
 // #if defined(__AVR_ATmega1284P__) || defined(__AVR_ATmega644PA__)
-// #define TOTAL_ANALOG_PINS       8
-// #define TOTAL_PINS              32 // 24 digital + 8 analog
-// #define VERSION_BLINK_PIN       0
-// #define IS_PIN_DIGITAL(p)       ((p) >= 2 && (p) < TOTAL_PINS)
-// #define IS_PIN_ANALOG(p)        ((p) >= 24 && (p) < TOTAL_PINS)
-// #define IS_PIN_PWM(p)           digitalPinHasPWM(p)
-// #define IS_PIN_SERVO(p)         ((p) >= 0 && (p) < MAX_SERVOS)
-// #define IS_PIN_I2C(p)           ((p) == 16 || (p) == 17)
-// #define PIN_TO_DIGITAL(p)       (p)
-// #define PIN_TO_ANALOG(p)        ((p) - 24)
-// #define PIN_TO_PWM(p)           PIN_TO_DIGITAL(p)
-// #define PIN_TO_SERVO(p)         ((p) - 2)
+// #define TOTAL_ANALOG_PINS       totalAnalogPins
+// #define TOTAL_PINS              totalPins // 24 digital + 8 analog
+// #define VERSION_BLINK_PIN       versionBlinkPin
+// #define IS_PIN_DIGITAL(p)       isPinDigital(p)
+// #define IS_PIN_ANALOG(p)        isPinAnalog(p)
+// #define IS_PIN_PWM(p)           isPimPWM(p)
+// #define IS_PIN_SERVO(p)         isPinServo(p)
+// #define IS_PIN_I2C(p)           isPinI2C(p)
+// #define PIN_TO_DIGITAL(p)       pinToDigital(p)
+// #define PIN_TO_ANALOG(p)        pinToAnalog(p)
+// #define PIN_TO_PWM(p)           pinToPWM(p)
+// #define PIN_TO_SERVO(p)         pinToServo(p)
 // #endif
 
 #if defined(__AVR_ATmega1284P__) || defined(__AVR_ATmega644PA__)
